@@ -75,7 +75,7 @@ include 'connection_dashboard.php';
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-cart-plus"></i> Products</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index_dashboard.php?ADDproduct" class="dropdown-item">Add Product</a>
-                            <a href="view_product.php" class="dropdown-item">View Products</a>
+                            <a href="index_dashboard.php?VIEWproduct" class="dropdown-item">View Products</a>
                         </div>
                     </div>
 
@@ -151,6 +151,8 @@ include 'connection_dashboard.php';
                 include 'add_product.php';
             } else if (isset($_GET['ADDcategory'])) {
                 include 'add_category.php';
+            } else if (isset($_GET['VIEWproduct'])) {
+                include 'view_product.php';
             } else {
                 echo '
                

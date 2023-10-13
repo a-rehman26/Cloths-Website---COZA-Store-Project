@@ -54,7 +54,8 @@ if (isset($_POST['btnProduct'])) {
 
     $productName = $_POST['p_name'];
     $productPrice = $_POST['p_price'];
-    $productDescription = $_POST['p_des'];
+    $productDescription = mysqli_real_escape_string($conn, $_POST['p_des']);
+    // $productDescription = $_POST['p_des'];
     $p_category = $_POST['product_category'];
 
     $productImage = $_FILES['p_image']['name'];
