@@ -11,7 +11,7 @@
 
                     <input class="form-control form-control-lg mb-3" type="text" placeholder="Product Price" name="p_price" required pattern="\d+(\.\,\d{2})?">
 
-                    <input class="form-control form-control-lg mb-3" type="text" placeholder="Product Description" name="p_des" required>
+                    <input class="form-control form-control-lg mb-3" type="text" placeholder="Product Description" name="p_des" pattern="[\s\S]*" required>
 
                     <input class="form-control form-control-lg mb-3" type="file" name="p_image" accept="image/*" required>
 
