@@ -83,7 +83,7 @@ include 'connection_dashboard.php';
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-cart-plus"></i> Categories</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index_dashboard.php?ADDcategory" class="dropdown-item">Add Categories</a>
-                            <a href="view_product.php" class="dropdown-item">View Categories</a>
+                            <a href="" class="dropdown-item">View Categories</a>
                         </div>
                     </div>
 

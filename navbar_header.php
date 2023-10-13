@@ -46,6 +46,7 @@
                                     <li><a href="women.php">Women's</a></li>
                                     <li><a href="men.php">Men's</a></li>
                                     <li><a href="cap.php">Cap's</a></li>
+                                    <li><a href="cap.php">Fragrance's</a></li>
                                 </ul>
                             </li>
 
