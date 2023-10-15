@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Product</title>
+  <title>Cap's Products</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!--===============================================================================================-->
@@ -115,8 +115,8 @@
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
               </a>
 
-              <a href="product.php" class="stext-109 cl8 hov-cl1 trans-04">
-                All Products
+              <a href="" class="stext-109 cl8 hov-cl1 trans-04">
+                Cap's
                 <!-- <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> -->
               </a>
 
@@ -183,17 +183,17 @@
                 </li> -->
 
                 <li class="p-b-6">
-                  <a href="product.php?sort=low_to_high" class="filter-link stext-106 trans-04">
+                  <a href="cap.php?sort=low_to_high" class="filter-link stext-106 trans-04">
                     Price: Low to High
                   </a>
                 </li>
                 <li class="p-b-6">
-                  <a href="product.php?sort=high_to_low" class="filter-link stext-106 trans-04">
+                  <a href="cap.php?sort=high_to_low" class="filter-link stext-106 trans-04">
                     Price: High to Low
                   </a>
                 </li>
                 <li class="p-b-6">
-                  <a href="product.php?sort=all" class="filter-link stext-106 trans-04">
+                  <a href="cap.php?sort=all" class="filter-link stext-106 trans-04">
                     Show All
                   </a>
                 </li>
@@ -363,7 +363,7 @@
         $startingPoint = ($currentPage - 1) * $resultsPerPage;
 
         // Modify your SQL query based on the sorting option
-        $query = "SELECT * FROM shop_product";
+        $query = "SELECT * FROM shop_product WHERE sp_category = 4";
 
         if ($sortOption === "low_to_high") {
           $query .= " ORDER BY CAST(sp_price AS DECIMAL) ASC";
@@ -424,16 +424,16 @@
         <?php
 
         // Calculate the total number of pages
-        $totalProductsQuery = "SELECT COUNT(*) FROM shop_product";
-        $totalProductsResult = mysqli_query($conn, $totalProductsQuery);
-        $totalProducts = mysqli_fetch_row($totalProductsResult)[0];
-        $totalPages = ceil($totalProducts / $resultsPerPage);
+        // $totalProductsQuery = "SELECT COUNT(*) FROM shop_product";
+        // $totalProductsResult = mysqli_query($conn, $totalProductsQuery);
+        // $totalProducts = mysqli_fetch_row($totalProductsResult)[0];
+        // $totalPages = ceil($totalProducts / $resultsPerPage);
 
         // Loop through and display pagination links
-        for ($i = 1; $i <= $totalPages; $i++) {
-          $isActive = ($i == $currentPage) ? 'active' : '';
-          echo '<a class="page-link ' . $isActive . '" href="product.php?page=' . $i . '">' . $i . '</a>';
-        }
+        // for ($i = 1; $i <= $totalPages; $i++) {
+        //     $isActive = ($i == $currentPage) ? 'active' : '';
+        //     echo '<a class="page-link ' . $isActive . '" href="product.php?page=' . $i . '">' . $i . '</a>';
+        // }
         ?>
       </div>
 

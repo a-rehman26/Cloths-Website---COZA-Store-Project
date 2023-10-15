@@ -56,7 +56,12 @@ include 'connection.php';
 
         $product_id_detail = $_GET['PRODUCTidSHOPDetail'];
 
-        $select_product_detail = mysqli_query($conn, " SELECT * FROM `shop_product`  WHERE sp_id = '$product_id_detail' ");
+        $select_product_detail = mysqli_query($conn, "
+        SELECT sp.*, c.c_name
+        FROM shop_product sp
+        LEFT JOIN categories c ON sp.sp_category = c.c_id
+        WHERE sp.sp_id = '$product_id_detail'
+        ");
 
         $fetch_product_detail = mysqli_fetch_assoc($select_product_detail);
 
@@ -70,8 +75,8 @@ include 'connection.php';
                     <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
                 </a>
 
-                <a href="men.php" class="stext-109 cl8 hov-cl1 trans-04">
-                    Men
+                <a href="" class="stext-109 cl8 hov-cl1 trans-04">
+                    <?php echo $fetch_product_detail['c_name'] ?>
                     <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
                 </a>
 
