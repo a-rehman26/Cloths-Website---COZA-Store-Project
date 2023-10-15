@@ -35,6 +35,62 @@
   <link rel="stylesheet" type="text/css" href="css/util.css" />
   <link rel="stylesheet" type="text/css" href="css/main.css" />
   <!--===============================================================================================-->
+
+
+  <!-- Additional styling for pagination -->
+
+  <style>
+    /* Pagination Container */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* Pagination Links */
+    .page-link {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      background-color: #f0f0f0;
+      color: #333;
+      text-decoration: none;
+    }
+
+    /* Active Page Link */
+    .page-link.active {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #333;
+    }
+
+    /* Hover Effect for Links */
+    .page-link:hover {
+      background-color: #ddd;
+    }
+
+    /* Next and Previous Links */
+    .page-link.prev,
+    .page-link.next {
+      font-weight: bold;
+    }
+
+    /* Disabled Links */
+    .page-link.disabled {
+      pointer-events: none;
+      color: #ccc;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+      .pagination {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+
 </head>
 
 <body class="animsition">
@@ -50,11 +106,30 @@
     <div class="container" style="margin-top: 25px;">
       <div class="flex-w flex-sb-m p-b-52">
         <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+
+          <!-- breadcrumb -->
+          <div class="container">
+            <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+              <a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+                Home
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+              </a>
+
+              <a href="product.php" class="stext-109 cl8 hov-cl1 trans-04">
+                All Products
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+              </a>
+
+              <!-- <span class="stext-109 cl4"> <?php echo $fetch_product_detail['sp_name'] ?> </span> -->
+            </div>
+          </div>
+
+          <!-- 
           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
             All Products
-          </button>
+          </button> -->
 
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+          <!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
             Women
           </button>
 
@@ -64,7 +139,7 @@
 
           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Accessories">
             Accessories
-          </button>
+          </button> -->
         </div>
 
         <div class="flex-w flex-c-m m-tb-10">
@@ -74,22 +149,6 @@
             Filter
           </div>
 
-          <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-            <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-            <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-            Search
-          </div>
-        </div>
-
-        <!-- Search product -->
-        <div class="dis-none panel-search w-full p-t-10 p-b-15">
-          <div class="bor8 dis-flex p-l-15">
-            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
-
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search" />
-          </div>
         </div>
 
         <!-- Filter -->
@@ -99,7 +158,7 @@
               <div class="mtext-102 cl2 p-b-15">Sort By</div>
 
               <ul>
-                <li class="p-b-6">
+                <!-- <li class="p-b-6">
                   <a href="#" class="filter-link stext-106 trans-04">
                     Default
                   </a>
@@ -121,23 +180,28 @@
                   <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
                     Newness
                   </a>
-                </li>
+                </li> -->
 
                 <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04">
+                  <a href="product.php?sort=low_to_high" class="filter-link stext-106 trans-04">
                     Price: Low to High
                   </a>
                 </li>
-
                 <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04">
+                  <a href="product.php?sort=high_to_low" class="filter-link stext-106 trans-04">
                     Price: High to Low
                   </a>
                 </li>
+                <li class="p-b-6">
+                  <a href="product.php?sort=all" class="filter-link stext-106 trans-04">
+                    Show All
+                  </a>
+                </li>
+
               </ul>
             </div>
 
-            <div class="filter-col2 p-r-15 p-b-27">
+            <!-- <div class="filter-col2 p-r-15 p-b-27">
               <div class="mtext-102 cl2 p-b-15">Price</div>
 
               <ul>
@@ -267,30 +331,62 @@
                   Crafts
                 </a>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
 
-      <div class="row isotope-grid">
+      <div class="row isotope-grid justify-content-between">
 
         <!-- product #1  -->
         <?php
         include 'connection.php';
 
-        $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 2 ");
+        // Default sorting option
+        $sortOption = "all";  // Default to showing all products
 
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+        if (isset($_GET['sort'])) {
+          $sortOption = $_GET['sort'];
+        }
+
+        // Define how many products to display per page
+        $resultsPerPage = 12;
+
+        // Determine the current page number
+        if (!isset($_GET['page'])) {
+          $currentPage = 1;
+        } else {
+          $currentPage = $_GET['page'];
+        }
+
+        // Calculate the starting point for fetching products
+        $startingPoint = ($currentPage - 1) * $resultsPerPage;
+
+        // Modify your SQL query based on the sorting option
+        $query = "SELECT * FROM shop_product";
+
+        if ($sortOption === "low_to_high") {
+          $query .= " ORDER BY sp_price ASC";
+        } elseif ($sortOption === "high_to_low") {
+          $query .= " ORDER BY CAST(sp_price AS DECIMAL) DESC";
+        }
+
+        // Add LIMIT to the query for pagination
+        $query .= " LIMIT $startingPoint, $resultsPerPage";
+
+        $result = mysqli_query($conn, $query);
+
+        while ($fetch_products = mysqli_fetch_assoc($result)) {
 
         ?>
 
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item mens" data-price="<?php echo $fetch_products['sp_price']; ?>">
             <!-- Block2 -->
             <div class="block2">
-              <div class="block2-pic hov-img0">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
+              <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
+                <img src="Content/product_images/<?php echo $fetch_products['sp_image'] ?>" alt="IMG-PRODUCT" />
 
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                <a href="shop_products_detail.php?PRODUCTidSHOPDetail=<?php echo $fetch_products['sp_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                   Quick View
                 </a>
 
@@ -299,11 +395,11 @@
               <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l">
                   <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
+                    <?php echo $fetch_products['sp_name'] ?>
                   </a>
 
                   <span class="stext-105 cl3"> RS:
-                    <?php echo $fetch_products['p_price'] ?>
+                    <?php echo $fetch_products['sp_price'] ?>
                   </span>
                 </div>
 
@@ -321,151 +417,24 @@
         }
         ?>
 
+      </div>
 
-        <!-- product #2  -->
+      <!-- Pagination -->
+      <div class="pagination">
         <?php
-        include 'connection.php';
 
-        $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 1 ");
+        // Calculate the total number of pages
+        $totalProductsQuery = "SELECT COUNT(*) FROM shop_product";
+        $totalProductsResult = mysqli_query($conn, $totalProductsQuery);
+        $totalProducts = mysqli_fetch_row($totalProductsResult)[0];
+        $totalPages = ceil($totalProducts / $resultsPerPage);
 
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-
-        ?>
-
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-            <!-- Block2 -->
-            <div class="block2">
-              <div class="block2-pic hov-img0">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
-
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
-
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
-                  </a>
-
-                  <span class="stext-105 cl3"> RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
-                </div>
-
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <?php
+        // Loop through and display pagination links
+        for ($i = 1; $i <= $totalPages; $i++) {
+          $isActive = ($i == $currentPage) ? 'active' : '';
+          echo '<a class="page-link ' . $isActive . '" href="product.php?page=' . $i . '">' . $i . '</a>';
         }
         ?>
-
-
-        <!-- product #3  -->
-        <?php
-        include 'connection.php';
-
-        $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 4 ");
-
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-
-        ?>
-
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item Accessories">
-            <!-- Block2 -->
-            <div class="block2">
-              <div class="block2-pic hov-img0">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
-
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
-
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
-                  </a>
-
-                  <span class="stext-105 cl3"> RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
-                </div>
-
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <?php
-        }
-        ?>
-
-
-        <!-- product #4  -->
-        <?php
-        include 'connection.php';
-
-        $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 5 ");
-
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-
-        ?>
-
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item Accessories">
-            <!-- Block2 -->
-            <div class="block2">
-              <div class="block2-pic hov-img0">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
-
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
-
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
-                  </a>
-
-                  <span class="stext-105 cl3"> RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
-                </div>
-
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <?php
-        }
-        ?>
-
-
       </div>
 
     </div>
@@ -596,6 +565,7 @@
   </script>
   <!--===============================================================================================-->
   <script src="js/main.js"></script>
+
 </body>
 
 </html>

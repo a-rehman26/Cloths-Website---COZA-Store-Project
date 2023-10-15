@@ -78,7 +78,7 @@ if (isset($_POST['btnProduct'])) {
     } else {
 
         $product_insert_query  = mysqli_query($conn, "INSERT INTO `products` (p_name, p_price, p_des, p_image, p_category) VALUES
-    ('$productName', '$productPrice', '$productDescription', '$productImage', '$p_category')");
+        ('$productName', '$productPrice', '$productDescription', '$productImage', '$p_category')");
 
         if ($product_insert_query) {
         ?>

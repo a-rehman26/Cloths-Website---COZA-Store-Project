@@ -171,12 +171,13 @@
                     <img src="images/icons/icon-close2.png" alt="CLOSE" />
                 </button>
 
-                <form class="wrap-search-header flex-w p-l-15">
-                    <button class="flex-c-m trans-04">
+                <form class="wrap-search-header flex-w p-l-15" action="search_product.php" method="get">
+                    <button class="flex-c-m trans-04" type="submit">
                         <i class="zmdi zmdi-search"></i>
                     </button>
-                    <input class="plh3" type="text" name="search" placeholder="Search..." />
+                    <input class="plh3" type="text" name="search_input" placeholder="Search Products..." />
                 </form>
+
             </div>
         </div>
     </header>
