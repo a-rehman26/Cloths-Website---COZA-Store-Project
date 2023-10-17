@@ -1,3 +1,7 @@
+<?php
+include 'connection.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,22 +53,51 @@
     <div class="container">
       <div class="flex-w flex-tr">
         <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-          <form>
+          <form method="post">
             <h4 class="mtext-105 cl2 txt-center p-b-30">Send Us A Message</h4>
 
             <div class="bor8 m-b-20 how-pos4-parent">
-              <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address" />
+              <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email_contact" placeholder="Your Email Address" />
               <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON" />
             </div>
 
             <div class="bor8 m-b-30">
-              <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+              <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg_contact" placeholder="How Can We Help?"></textarea>
             </div>
 
-            <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+            <button type="submit" name="btn_contact" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
               Submit
             </button>
           </form>
+
+          <?php
+          include 'connection.php';
+
+          if (isset($_POST['btn_contact'])) {
+
+            // $user_id = $_SESSION['user_id'];
+
+            $email_input_contact = $_POST['email_contact'];
+            $msg_input_contact = $_POST['msg_contact'];
+
+            $insert_query = mysqli_query($conn, " INSERT INTO `contact_form`( `c_email`, `c_message`) VALUES ('$email_input_contact','$msg_input_contact') ");
+
+            if ($insert_query) {
+          ?>
+              <script>
+                alert("Contact Data Send");
+              </script>
+            <?php
+            } else {
+            ?>
+              <script>
+                alert("Contact Data Not Send");
+              </script>
+          <?php
+            }
+          }
+          ?>
+
         </div>
 
         <div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">

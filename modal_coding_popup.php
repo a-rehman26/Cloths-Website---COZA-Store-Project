@@ -1,13 +1,5 @@
  <!-- Modal1 -->
 
-
- <?php
-    $s_p = mysqli_query($conn, " SELECT * FROM `products` ");
-
-    $fetch_p = mysqli_fetch_assoc($s_p);
-
-    ?>
-
  <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
      <div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -62,16 +54,16 @@
                  <div class="col-md-6 col-lg-5 p-b-30">
                      <div class="p-r-50 p-t-5 p-lr-0-lg">
                          <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                             <?php echo $fetch_p['p_name'] ?>
+                             hello
                          </h4>
 
                          <span class="mtext-106 cl2">RS:
-                             <?php echo $fetch_p['p_price'] ?>
+                             500
                          </span>
 
                          <p class="stext-102 cl3 p-t-23">
                              <li>
-                                 <?php echo $fetch_p['p_des'] ?>
+                                 hello world
                              </li>
                          </p>
 
