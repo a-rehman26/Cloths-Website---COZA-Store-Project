@@ -232,200 +232,212 @@ include 'connection.php';
 
       </div>
 
-      <div class="row isotope-grid">
+      <form action="add_to_cart_code.php" method="post">
 
-        <!-- product #1 -->
-        <?php
-        include 'connection.php';
+        <div class="row isotope-grid">
 
-        $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 2 ORDER BY RAND() LIMIT 4");
+          <!-- product #1 -->
+          <?php
+          include 'connection.php';
 
-        // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 2 ");
+          $select_products = mysqli_query($conn, "SELECT * FROM `shop_product` WHERE sp_category = 2 ORDER BY RAND() LIMIT 4");
 
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+          // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 2 ");
 
-        ?>
+          while ($fetch_products = mysqli_fetch_assoc($select_products)) {
 
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-            <div class="block2">
-              <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
+          ?>
 
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+              <div class="block2">
+                <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
+                  <img src="Content/product_images/<?php echo $fetch_products['sp_image'] ?>" alt="IMG-PRODUCT" />
 
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
+                  <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['sp_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                    Quick View
                   </a>
 
-                  <span class="stext-105 cl3">RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
                 </div>
 
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+                <div class="block2-txt flex-w flex-t p-t-14">
+                  <div class="block2-txt-child1 flex-col-l">
+                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                      <?php echo $fetch_products['sp_name'] ?>
+                    </a>
 
-        <?php
-        }
-        ?>
+                    <span class="stext-105 cl3">RS:
+                      <?php echo $fetch_products['sp_price'] ?>
+                    </span>
+                  </div>
 
-
-        <!-- product #2 -->
-        <?php
-        include 'connection.php';
-
-        $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 1 ORDER BY RAND() LIMIT 4");
-
-        // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 1 ");
-
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-
-        ?>
-
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-            <div class="block2">
-              <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
-
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
-                  </a>
-
-                  <span class="stext-105 cl3">RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
-                </div>
-
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
+                  <div class="block2-txt-child2 flex-r p-t-3">
+                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                      <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
+                      <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        <?php
-        }
-        ?>
+          <?php
+          }
+          ?>
 
-        <!-- product #3 -->
-        <?php
-        include 'connection.php';
 
-        $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 4 ORDER BY RAND() LIMIT 4");
+          <!-- product #2 -->
+          <?php
+          include 'connection.php';
 
-        // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 4 ");
+          $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 1 ORDER BY RAND() LIMIT 4");
 
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+          // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 1 ");
 
-        ?>
+          while ($fetch_products = mysqli_fetch_assoc($select_products)) {
 
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item Accessories">
-            <div class="block2">
-              <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
+          ?>
 
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
-              </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+              <div class="block2">
+                <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
+                  <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
 
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
-                  </a>
-
-                  <span class="stext-105 cl3">RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
-                </div>
-
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
+                  <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                    Quick View
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
 
-        <?php
-        }
-        ?>
+                <div class="block2-txt flex-w flex-t p-t-14">
+                  <div class="block2-txt-child1 flex-col-l">
+                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                      <?php echo $fetch_products['p_name'] ?>
+                    </a>
 
-        <!-- product #4 -->
-        <?php
-        include 'connection.php';
+                    <span class="stext-105 cl3">RS:
+                      <?php echo $fetch_products['p_price'] ?>
+                    </span>
+                  </div>
 
-        $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 5 ORDER BY RAND() LIMIT 4");
-
-        // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 5 ");
-
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-
-        ?>
-
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item Accessories">
-            <div class="block2">
-              <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
-                <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
-
-                <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['p_name'] ?>
-                  </a>
-
-                  <span class="stext-105 cl3">RS:
-                    <?php echo $fetch_products['p_price'] ?>
-                  </span>
-                </div>
-
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
+                  <div class="block2-txt-child2 flex-r p-t-3">
+                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                      <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
+                      <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        <?php
-        }
-        ?>
+          <?php
+          }
+          ?>
+
+          <!-- product #3 -->
+          <?php
+          include 'connection.php';
+
+          $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 4 ORDER BY RAND() LIMIT 4");
+
+          // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 4 ");
+
+          while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+
+          ?>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item Accessories">
+              <div class="block2">
+                <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
+                  <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
+
+                  <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                    Quick View
+                  </a>
+                </div>
+
+                <div class="block2-txt flex-w flex-t p-t-14">
+                  <div class="block2-txt-child1 flex-col-l">
+                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                      <?php echo $fetch_products['p_name'] ?>
+                    </a>
+
+                    <span class="stext-105 cl3">RS:
+                      <?php echo $fetch_products['p_price'] ?>
+                    </span>
+                  </div>
+
+                  <div class="block2-txt-child2 flex-r p-t-3">
+                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                      <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
+                      <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <?php
+          }
+          ?>
+
+          <!-- product #4 -->
+          <?php
+          include 'connection.php';
+
+          $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE p_category = 5 ORDER BY RAND() LIMIT 4");
+
+          // $select_products = mysqli_query($conn, " SELECT * FROM `products` WHERE p_category = 5 ");
+
+          while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+
+          ?>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item Accessories">
+              <div class="block2">
+                <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
+                  <img src="Content/product_images/<?php echo $fetch_products['p_image'] ?>" alt="IMG-PRODUCT" />
+
+                  <a href="product-detail.php?PRODUCTidDetail=<?php echo $fetch_products['p_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                    Quick View
+                  </a>
+                </div>
+
+                <div class="block2-txt flex-w flex-t p-t-14">
+                  <div class="block2-txt-child1 flex-col-l">
+                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                      <?php echo $fetch_products['p_name'] ?>
+                    </a>
+
+                    <span class="stext-105 cl3">RS:
+                      <?php echo $fetch_products['p_price'] ?>
+                    </span>
+                  </div>
+
+                  <div class="block2-txt-child2 flex-r p-t-3">
+                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                      <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
+                      <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <?php
+          }
+          ?>
 
 
-      </div>
+        </div>
+
+        <input type="hidden" value="<?php echo $fetch_product_detail['sp_id'] ?>" name="cart_id" id="">
+        <input type="hidden" name="cart_name" value="<?php echo $fetch_product_detail['sp_name'] ?>" id="">
+        <input type="hidden" name="cart_price" value="<?php echo $fetch_product_detail['sp_price'] ?>" id="">
+        <input type="hidden" name="cart_image" value="<?php echo $fetch_product_detail['sp_image'] ?>" id="">
+        <input type="hidden" name="cart_quantity" value="" min="1">
+
+        <input type="hidden" value="<?php echo $fetch_product_detail['sp_id'] ?>" name="cart_ID" id="">
+
+      </form>
 
       <!-- Load more -->
       <div class="flex-c-m flex-w w-full p-t-45">

@@ -80,7 +80,7 @@ session_start();
             $email_input_contact = $_POST['email_contact'];
             $msg_input_contact = $_POST['msg_contact'];
 
-            $insert_query = mysqli_query($conn, " INSERT INTO `contact_form`( `c_email`, `c_message`) VALUES ('$email_input_contact','$msg_input_contact') ");
+            $insert_query = mysqli_query($conn, " INSERT INTO `contact_form`( `email`, `msg`) VALUES ('$email_input_contact','$msg_input_contact') ");
 
             if ($insert_query) {
           ?>
