@@ -426,7 +426,6 @@ include 'connection.php';
           }
           ?>
 
-
         </div>
 
         <input type="hidden" value="<?php echo $fetch_product_detail['sp_id'] ?>" name="cart_id" id="">

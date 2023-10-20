@@ -336,88 +336,100 @@
         </div>
       </div>
 
-      <div class="row isotope-grid justify-content-between">
+      <form action="add_to_cart_code.php" method="post">
 
-        <!-- product #1  -->
-        <?php
-        include 'connection.php';
+        <div class="row isotope-grid justify-content-between">
 
-        // Default sorting option
-        $sortOption = "all";  // Default to showing all products
+          <!-- product #1  -->
+          <?php
+          include 'connection.php';
 
-        if (isset($_GET['sort'])) {
-          $sortOption = $_GET['sort'];
-        }
+          // Default sorting option
+          $sortOption = "all";  // Default to showing all products
 
-        // Define how many products to display per page
-        $resultsPerPage = 12;
+          if (isset($_GET['sort'])) {
+            $sortOption = $_GET['sort'];
+          }
 
-        // Determine the current page number
-        if (!isset($_GET['page'])) {
-          $currentPage = 1;
-        } else {
-          $currentPage = $_GET['page'];
-        }
+          // Define how many products to display per page
+          $resultsPerPage = 12;
 
-        // Calculate the starting point for fetching products
-        $startingPoint = ($currentPage - 1) * $resultsPerPage;
+          // Determine the current page number
+          if (!isset($_GET['page'])) {
+            $currentPage = 1;
+          } else {
+            $currentPage = $_GET['page'];
+          }
 
-        // Modify your SQL query based on the sorting option
-        $query = "SELECT * FROM shop_product WHERE sp_category = 4";
+          // Calculate the starting point for fetching products
+          $startingPoint = ($currentPage - 1) * $resultsPerPage;
 
-        if ($sortOption === "low_to_high") {
-          $query .= " ORDER BY CAST(sp_price AS DECIMAL) ASC";
-        } elseif ($sortOption === "high_to_low") {
-          $query .= " ORDER BY CAST(sp_price AS DECIMAL) DESC";
-        }
+          // Modify your SQL query based on the sorting option
+          $query = "SELECT * FROM shop_product WHERE sp_category = 4";
 
-        // Add LIMIT to the query for pagination
-        $query .= " LIMIT $startingPoint, $resultsPerPage";
+          if ($sortOption === "low_to_high") {
+            $query .= " ORDER BY CAST(sp_price AS DECIMAL) ASC";
+          } elseif ($sortOption === "high_to_low") {
+            $query .= " ORDER BY CAST(sp_price AS DECIMAL) DESC";
+          }
 
-        $result = mysqli_query($conn, $query);
+          // Add LIMIT to the query for pagination
+          $query .= " LIMIT $startingPoint, $resultsPerPage";
 
-        while ($fetch_products = mysqli_fetch_assoc($result)) {
+          $result = mysqli_query($conn, $query);
 
-        ?>
+          while ($fetch_products = mysqli_fetch_assoc($result)) {
 
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item mens" data-price="<?php echo $fetch_products['sp_price']; ?>">
-            <!-- Block2 -->
-            <div class="block2">
-              <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
-                <img src="Content/product_images/<?php echo $fetch_products['sp_image'] ?>" alt="IMG-PRODUCT" />
+          ?>
 
-                <a href="shop_products_detail.php?PRODUCTidSHOPDetail=<?php echo $fetch_products['sp_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                  Quick View
-                </a>
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item mens" data-price="<?php echo $fetch_products['sp_price']; ?>">
+              <!-- Block2 -->
+              <div class="block2">
+                <div class="block2-pic hov-img0" style="border: 1px solid whitesmoke;">
+                  <img src="Content/product_images/<?php echo $fetch_products['sp_image'] ?>" alt="IMG-PRODUCT" />
 
-              </div>
-
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    <?php echo $fetch_products['sp_name'] ?>
+                  <a href="shop_products_detail.php?PRODUCTidSHOPDetail=<?php echo $fetch_products['sp_id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                    Quick View
                   </a>
 
-                  <span class="stext-105 cl3"> RS:
-                    <?php echo $fetch_products['sp_price'] ?>
-                  </span>
                 </div>
 
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
-                  </a>
+                <div class="block2-txt flex-w flex-t p-t-14">
+                  <div class="block2-txt-child1 flex-col-l">
+                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                      <?php echo $fetch_products['sp_name'] ?>
+                    </a>
+
+                    <span class="stext-105 cl3"> RS:
+                      <?php echo $fetch_products['sp_price'] ?>
+                    </span>
+                  </div>
+
+                  <div class="block2-txt-child2 flex-r p-t-3">
+                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                      <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON" />
+                      <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        <?php
-        }
-        ?>
+          <?php
+          }
+          ?>
 
-      </div>
+        </div>
+
+        <input type="hidden" value="<?php echo $fetch_product_detail['sp_id'] ?>" name="cart_id" id="">
+        <input type="hidden" name="cart_name" value="<?php echo $fetch_product_detail['sp_name'] ?>" id="">
+        <input type="hidden" name="cart_price" value="<?php echo $fetch_product_detail['sp_price'] ?>" id="">
+        <input type="hidden" name="cart_image" value="<?php echo $fetch_product_detail['sp_image'] ?>" id="">
+        <input type="hidden" name="cart_quantity" value="" min="1">
+
+        <input type="hidden" value="<?php echo $fetch_product_detail['sp_id'] ?>" name="cart_ID" id="">
+
+      </form>
 
       <!-- Pagination -->
       <div class="pagination">

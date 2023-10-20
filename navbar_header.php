@@ -97,7 +97,40 @@ include 'link.php';
                             <i class="zmdi zmdi-search"></i>
                         </div>
 
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="
+                        
+                        
+                    <?php
+                    include 'connection.php';
+
+                    // Check if the user is logged in
+                    if (isset($_SESSION['user_id'])) {
+                        $user_id = $_SESSION['user_id'];
+
+                        // Fetch the cart item count for the logged-in user
+                        $select_data_products = mysqli_query($conn, "SELECT * FROM `cart_product` WHERE user_id = $user_id");
+                        $cartItemCount = mysqli_num_rows($select_data_products);
+
+                        echo $cartItemCount;
+                    } else {
+
+                        if (isset($_SESSION['temp_cart_id'])) {
+
+                            $temp_cart_id = $_SESSION['temp_cart_id'];
+
+                            $select_temp_cart_items = mysqli_query($conn, " SELECT * FROM `cart_product` WHERE user_id = '$temp_cart_id' ");
+
+                            $cart_rows_nav_tem = mysqli_num_rows($select_temp_cart_items);
+
+                            echo $cart_rows_nav_tem;
+                        } else {
+                            echo "0";
+                        }
+                    }
+
+                    ?>
+
+                        ">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
 
@@ -105,6 +138,7 @@ include 'link.php';
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
                     </div>
+
                 </nav>
             </div>
         </div>
@@ -222,39 +256,72 @@ include 'link.php';
                 </div>
             </div>
 
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
+            <?php
+            include 'connection.php';
 
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="images/item-cart-01.jpg" alt="IMG" />
-                        </div>
+            if (isset($_SESSION['user_id'])) {
+                $user_id = $_SESSION['user_id'];
 
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                White Shirt Pleat
-                            </a>
+                $subTotal = 0; // Initialize total cart value
 
-                            <span class="header-cart-item-info"> 1 x RS: 0 </span>
-                        </div>
-                    </li>
+                // Fetch cart items for the logged-in user
+                $select_cart_items = mysqli_query($conn, "SELECT * FROM `cart_product` WHERE user_id = $user_id");
 
-                </ul>
+                while ($row = mysqli_fetch_assoc($select_cart_items)) {
 
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">Total: RS: 0</div>
+                    $price = $row['product_price']; // Replace this with the actual price from your database query
 
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            View Cart
-                        </a>
+                    // Format the price with commas as a thousand separator
+                    $formattedPrice = number_format($price, 0);
 
-                        <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Check Out
-                        </a>
+                    $productTotal = $row['product_price'] * $row['quantity'];
+                    $subTotal += $productTotal;
+
+            ?>
+
+                    <div class="header-cart-content flex-w js-pscroll">
+                        <ul class="header-cart-wrapitem w-full">
+
+                            <li class="header-cart-item flex-w flex-t m-b-12">
+                                <div class="header-cart-item-img">
+                                    <img src="Content/product_images/<?php echo $row['product_image'] ?>" alt="IMG" />
+                                </div>
+
+                                <div class="header-cart-item-txt p-t-8">
+                                    <a href="" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                                        <?php echo $row['product_name'] ?>
+                                    </a>
+
+                                    <span class="header-cart-item-info"> [ <?php echo $row['quantity'] ?> ] RS:
+                                        <!-- echo 'RS: ' .  -->
+                                        <?php echo $formattedPrice; ?> </span>
+                                </div>
+                            </li>
+
+                        </ul>
+
                     </div>
+
+            <?php
+                }
+            }
+
+            ?>
+
+            <div class="w-full">
+                <div class="header-cart-total w-full p-tb-40">Total: <?php echo 'RS: ' . number_format($subTotal, 0); ?></div>
+
+                <div class="header-cart-buttons flex-w w-full">
+                    <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                        View Cart
+                    </a>
+
+                    <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                        Check Out
+                    </a>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
